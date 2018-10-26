@@ -1,173 +1,19 @@
 import React from "react";
 import { Accordion, Form, Menu } from "semantic-ui-react";
-
-const ModeForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Radio label="None" type="radio" value="small" />
-      <Form.Radio label="Development" type="radio" value="medium" />
-      <Form.Radio label="Production" type="radio" value="large" />
-    </Form.Group>
-  </Form>
-);
-
-const EntryForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Input
-        label="Entry point"
-        value=""
-        placeholder="Enter your entry point"
-      />
-    </Form.Group>
-  </Form>
-);
-
-const OutputForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Input
-        label="Output Filename"
-        name="color"
-        value=""
-        placeholder="Enter your output filename"
-      />
-      <Form.Input
-        label="Output Public Path"
-        name="color"
-        value=""
-        placeholder="Enter your output public path"
-      />
-      <Form.Input
-        label="Output Library"
-        name="color"
-        value=""
-        placeholder="Enter your output library"
-      />
-      <Form.Input
-        label="Output Library Target"
-        name="color"
-        value=""
-        placeholder="Enter your output library target"
-      />
-    </Form.Group>
-  </Form>
-);
-
-const ModuleForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Input
-        label="Module"
-        value=""
-        placeholder="Please enter your module"
-      />
-      <Form.Button label="Red" value="Add">
-        Add
-      </Form.Button>
-      <Form.Input
-        label="Module rules"
-        value=""
-        placeholder="Enter your module rules"
-      />
-    </Form.Group>
-  </Form>
-);
-
-const ResolveForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-
-const PerformanceForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-
-const DevtoolForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-
-const ContextForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-
-const TargetForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-const ExternalsForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-
-const StatsForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-const DevserverForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
-const PluginsForm = (
-  <Form>
-    <Form.Group grouped>
-      <Form.Checkbox label="Red" name="color" value="red" />
-      <Form.Checkbox label="Orange" name="color" value="orange" />
-      <Form.Checkbox label="Green" name="color" value="green" />
-      <Form.Checkbox label="Blue" name="color" value="blue" />
-    </Form.Group>
-  </Form>
-);
+import { ContextForm } from "./ContextForm";
+import { DevserverForm } from "./DevserverForm";
+import { Devtool } from "./Devtool";
+import { Display } from "./Display";
+import { EntryForm } from "./EntryForm";
+import { ExternalsForm } from "./Externals";
+import { ModeForm } from "./ModeForm";
+import { ModuleForm } from "./ModuleForm";
+import { OutputForm } from "./OutputForm";
+import { PerformanceForm } from "./Performance";
+import { PluginsForm } from "./PluginsForm";
+import { ResolveForm } from "./Resolve";
+import { StatsForm } from "./StatsForm";
+import { TargetForm } from "./TargetForm";
 
 export class AccordionExampleMenu extends React.Component {
   state = { activeIndex: undefined };
