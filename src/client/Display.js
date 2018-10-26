@@ -1,5 +1,6 @@
 import React from "react";
 const beautinator = require("beautinator");
+import { Icon } from "semantic-ui-react";
 
 const style = {
   width: "50%",
@@ -8,8 +9,12 @@ const style = {
 };
 
 const textAreaStyle = {
+  background: "#2d2d2d",
   width: "100%",
-  height: "100vh"
+  height: "100vh",
+  color: "white",
+  fontFamily: "Monaco",
+  border: "1px solid black"
 };
 
 export const Display = props => {
@@ -17,11 +22,14 @@ export const Display = props => {
 
   const result2 = JSON.stringify(props, undefined, 4);
   return (
-    <div style={style} >
-      <textarea style={textAreaStyle} 
-      value={`const path = require("path");
+    <div style={style}>
+      <textarea
+        style={textAreaStyle}
+        value={`const path = require("path");
       
-module.exports = ${result2}`} />;
+module.exports = ${result2};`}
+      />
+      <Icon name="copy outline" size="large" style={{ cursor: "copy" }} />
     </div>
-  )
+  );
 };

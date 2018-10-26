@@ -3,6 +3,7 @@ const ReactDOM = require("react-dom");
 import { Console } from "./Console";
 import { Display } from "./Display";
 require("./index.css");
+import { AccordionExampleMenu } from "./Console2";
 
 const style = {
   display: "flex"
@@ -15,13 +16,13 @@ class App extends React.Component {
     this.modeHandler = this.modeHandler.bind(this);
     this.entryHandler = this.entryHandler.bind(this);
     this.outputHandler = this.outputHandler.bind(this);
-    this.moduleHandler = this.moduleHandler.bind(this);    
+    this.moduleHandler = this.moduleHandler.bind(this);
     this.resolveHandler = this.resolveHandler.bind(this);
-    this.performanceHandler = this.performanceHandler.bind(this);    
+    this.performanceHandler = this.performanceHandler.bind(this);
     this.devtoolHandler = this.devtoolHandler.bind(this);
-    this.contextHandler = this.contextHandler.bind(this);    
+    this.contextHandler = this.contextHandler.bind(this);
     this.targetHandler = this.targetHandler.bind(this);
-    this.externalsHandler = this.externalsHandler.bind(this);    
+    this.externalsHandler = this.externalsHandler.bind(this);
     this.statsHandler = this.statsHandler.bind(this);
     this.devserverHandler = this.devserverHandler.bind(this);
     this.pluginsHandler = this.pluginsHandler.bind(this);
@@ -63,7 +64,7 @@ class App extends React.Component {
     this.setState({ external: [] });
   }
   statsHandler() {
-    this.setState({ stats: 'string' });
+    this.setState({ stats: "string" });
     console.log(this.state);
   }
   devserverHandler() {
@@ -81,17 +82,21 @@ class App extends React.Component {
           modeHandler={this.modeHandler}
           entryHandler={this.entryHandler}
           outputHandler={this.outputHandler}
-          moduleHandler={this.moduleHandler}          
+          moduleHandler={this.moduleHandler}
           resolveHandler={this.resolveHandler}
-          performanceHandler={this.performanceHandler}          
+          performanceHandler={this.performanceHandler}
           devtoolHandler={this.devtoolHandler}
           contextHandler={this.contextHandler}
-          targetHandler={this.targetHandler}          
+          targetHandler={this.targetHandler}
           externalsHandler={this.externalsHandler}
-          statsHandler={this.statsHandler}          
+          statsHandler={this.statsHandler}
           devserverHandler={this.devserverHandler}
           pluginsHandler={this.pluginsHandler}
         />
+        <div style={{ width: "50%" }}>
+          <AccordionExampleMenu />
+        </div>
+
         <Display {...this.state} />
       </div>
     );

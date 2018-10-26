@@ -1,3 +1,19 @@
 body {
-  background: pink;
+  background: #1b1b1b;
+  color: #00bcd4;
+}
+.title {
+  color: rgb(255, 187, 0) !important;
+}
+.ui.vertical.menu {
+  background: #1b1b1b;
+  width: 35rem;
+}
+
+.ui.checkbox input.hidden + label {
+  color: #00bcd4;
+}
+
+.ui.form .field > label {
+  color: #00bcd4;
 }
