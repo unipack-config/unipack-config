@@ -10,81 +10,111 @@ export const Console = props => {
     <div style={style}>
       <div>
         {/* MODE */}
-        <div>
-          <label>Mode</label>
-          <input type="button" onClick={props.modeHandler} />
+        <label>Mode</label>
+        <select onChange={props.modeHandler}>
+          <option>None</option>
+          <option>Development</option>
+          <option>Production</option>
+        </select>
+          
         </div>
         {/* ENTRY */}
         <label>Entry point</label>
-        <input onClick={props.entryHandler} type="button" />
-        <input type="text" placeholder="Please enter your entry point" />
+        <input onChange={props.entryHandler} placeholder="Please enter entry point"/>
 
         {/* OUTPUT */}
         <div>
           <label>Output</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.outputHandler} type="button" />
           <input type="text" placeholder="Please enter your entry point" />
         </div>
 
         {/* MODULE */}
         <div>
           <label>Module</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.moduleHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
 
         {/* RESOLVE */}
         <div>
           <label>Resolve</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.resolveHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
         {/* PERFORMANCE */}
         <div>
           <label>Performance</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.performanceHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
         <div>
           {/* DEVTOOL */}
           <label>Devtool</label>
-          <input onClick={props.output} type="button" />
-          <input type="text" placeholder="Please enter your module" />
+          <select onClick={props.devtoolHandler}>
+            <option>source-map</option>
+            <option>eval</option>
+            <option>cheap-eval-source-map</option>
+            <option>eval-source-map</option>
+            <option>cheap-source-map</option>
+            <option>cheap-module-source-map</option>
+            <option>inline-cheap-source-map</option>
+            <option>inline-cheap-module-source-map</option>
+            <option>hidden-source-map</option>
+            <option>inline-source-map</option>
+            <option>nosources-source-map</option>
+          </select>
         </div>
 
         <div>
           {/* Context */}
           <label>Context</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.contextHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
 
         <div>
           {/* Target */}
           <label>Target</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.targetHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
 
         <div>
           {/* Externals */}
           <label>Externals</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.externalsHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
+
+        <div>
+          {/* STATS */}
+          <label>Stats</label>
+          <select onChange={props.statsHandler} >
+            <option>none</option>
+            <option>errors-only</option>
+            <option>minimal</option>
+            <option>normal</option>
+            <option>verbose</option>
+          </select>
+  
+        </div>
+
         <div>
           {/* DEVSERVER */}
           <label>DevServer</label>
-          <input onClick={props.output} type="button" />
-          <input type="text" placeholder="Please enter your module" />
+          <select onChange={props.devserverHandler}>
+            <option>proxy</option>
+          </select>
         </div>
+
         <div>
           {/* PLUGINS */}
           <label>Plugins</label>
-          <input onClick={props.output} type="button" />
+          <input onClick={props.pluginsHandler} type="button" />
           <input type="text" placeholder="Please enter your module" />
         </div>
-      </div>
+      
     </div>
   );
 };

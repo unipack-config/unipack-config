@@ -7,10 +7,21 @@ const style = {
   height: "100vh"
 };
 
+const textAreaStyle = {
+  width: "100%",
+  height: "100vh"
+};
+
 export const Display = props => {
   const result = beautinator(props);
 
   const result2 = JSON.stringify(props, undefined, 4);
-  console.log(typeof result);
-  return <textarea style={style} value={result2} />;
+  return (
+    <div style={style} >
+      <textarea style={textAreaStyle} 
+      value={`const path = require("path");
+      
+module.exports = ${result2}`} />;
+    </div>
+  )
 };
