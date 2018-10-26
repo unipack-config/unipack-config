@@ -23,15 +23,15 @@ class App extends React.Component {
     this.moduleHandler = this.moduleHandler.bind(this);
     this.modulesRulesHandler = this.modulesRulesHandler.bind(this);
     this.resolveHandler = this.resolveHandler.bind(this);
-    this.performanceHandler = this.performanceHandler.bind(this);
+    this.performanceHandler = this.performanceHandler.bind(this);    
     this.devtoolHandler = this.devtoolHandler.bind(this);
-    this.contextHandler = this.contextHandler.bind(this);
+    this.contextHandler = this.contextHandler.bind(this);    
     this.targetHandler = this.targetHandler.bind(this);
-    this.externalsHandler = this.externalsHandler.bind(this);
+    this.externalsHandler = this.externalsHandler.bind(this);    
     this.statsHandler = this.statsHandler.bind(this);
     this.devserverHandler = this.devserverHandler.bind(this);
     this.pluginsHandler = this.pluginsHandler.bind(this);
-
+    
 
   }
 
@@ -43,10 +43,10 @@ class App extends React.Component {
     this.setState({ entry: "./index.js" });
   }
   outputHandler() {
-    this.setState({
+    this.setState({ 
       output: {
         ...this.state.output
-      }
+      } 
     });
     console.log(this.state);
   }
@@ -172,14 +172,14 @@ class App extends React.Component {
           outputLibrary={this.outputLibrary}
           outputLibraryTarget={this.outputLibraryTarget}
           moduleHandler={this.moduleHandler}
-          modulesRulesHandler={this.modulesRulesHandler}
+          modulesRulesHandler={this.modulesRulesHandler}          
           resolveHandler={this.resolveHandler}
-          performanceHandler={this.performanceHandler}
+          performanceHandler={this.performanceHandler}          
           devtoolHandler={this.devtoolHandler}
           contextHandler={this.contextHandler}
-          targetHandler={this.targetHandler}
+          targetHandler={this.targetHandler}          
           externalsHandler={this.externalsHandler}
-          statsHandler={this.statsHandler}
+          statsHandler={this.statsHandler}          
           devserverHandler={this.devserverHandler}
           pluginsHandler={this.pluginsHandler}
         />
