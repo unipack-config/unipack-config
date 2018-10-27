@@ -141,8 +141,22 @@ export const Console = props => {
       <div style={fieldWrap}>
         {/* PLUGINS */}
         <label>Plugins</label>
-        <input onChange={props.pluginsHandler} />
-        <input type="text" placeholder="Please enter your module" />
+        <select onChange={props.pluginsHandler}>
+          <option value="new CleanWebpackPlugin">
+            {" "}
+            new CleanWebpackPlugin
+          </option>
+          <option
+            value="new HtmlWebpackPlugin(
+            {`template: './public/index.html'`})"
+          >
+            new HtmlWebpackPlugin(
+            {"template: './public/index.html'"})
+          </option>
+          <option value="new webpack.optimize.ModuleConcatenationPlugin()">
+            new webpack.optimize.ModuleConcatenationPlugin()
+          </option>
+        </select>
       </div>
     </div>
   );

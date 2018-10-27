@@ -129,7 +129,11 @@ class App extends React.Component {
   }
   pluginsHandler(e) {
     e.preventDefault();
-    this.setState({ plugins: [] });
+    if (!this.state.plugins.includes(e.target.value)) {
+      this.setState({
+        plugins: [...this.state.plugins, e.target.value]
+      });
+    }
   }
 
   render() {
