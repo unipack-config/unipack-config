@@ -1,5 +1,6 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
+import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
 
@@ -135,6 +136,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={style}>
+        <Header />
         <Console
           modeHandler={this.modeHandler}
           entryHandler={this.entryHandler}
