@@ -1,7 +1,14 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
+
+import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
+
+import Tippy from '@tippy.js/react'
+import 'tippy.js/dist/tippy.css'
+
+
 require("./index.css");
 
 const style = {
@@ -9,178 +16,158 @@ const style = {
 };
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      mode: "",
+      entry: "./index.js",
+      output: {
+        path: 'path.resolve(__dirname, "dist")',
+        filename: "bundle.js"
+      },
+      module: {
+        rules: [
+          {
+            test: /\.jsx?$/,
+            loader: "babel-loader"
+          }
+        ]
+      },
+      devtool: "cheap-source-map",
+      stats: "",
+      devServer: {
+        port: 3000,
+        open: true,
+        proxy: '{ "/api": "http://localhost:8080" }'
+      },
+      plugins: []
+    };
+
     this.modeHandler = this.modeHandler.bind(this);
     this.entryHandler = this.entryHandler.bind(this);
-    this.outputHandler = this.outputHandler.bind(this);
     this.outputPathHandler = this.outputPathHandler.bind(this);
     this.outputFilenameHandler = this.outputFilenameHandler.bind(this);
-    this.outputPublicPathHandler = this.outputPublicPathHandler.bind(this);
-    this.outputLibrary = this.outputLibrary.bind(this);
-    this.outputLibraryTarget = this.outputLibraryTarget.bind(this);
-    this.moduleHandler = this.moduleHandler.bind(this);
-    this.modulesRulesHandler = this.modulesRulesHandler.bind(this);
-    this.resolveHandler = this.resolveHandler.bind(this);
-    this.performanceHandler = this.performanceHandler.bind(this);
+    this.moduleRulesTestHandler = this.moduleRulesTestHandler.bind(this);
+    this.moduleRulesLoaderHandler = this.moduleRulesLoaderHandler.bind(this);
     this.devtoolHandler = this.devtoolHandler.bind(this);
-    this.contextHandler = this.contextHandler.bind(this);
-    this.targetHandler = this.targetHandler.bind(this);
-    this.externalsHandler = this.externalsHandler.bind(this);
     this.statsHandler = this.statsHandler.bind(this);
-    this.devserverHandler = this.devserverHandler.bind(this);
+    this.devServerPortHandler = this.devServerPortHandler.bind(this);
+    this.devServerProxyHandler = this.devServerProxyHandler.bind(this);
+    this.devServerOpenHandler = this.devServerOpenHandler.bind(this);
     this.pluginsHandler = this.pluginsHandler.bind(this);
-
-
   }
 
-  modeHandler() {
-    this.setState({ mode: "none" });
-    console.log(this.state);
+  modeHandler(e) {
+    e.preventDefault();
+    console.log("e", e.target.value);
+    this.setState({ mode: e.target.value });
   }
-  entryHandler() {
-    this.setState({ entry: "./index.js" });
+  entryHandler(e) {
+    e.preventDefault();
+    console.log("e", e.target.value);
+    this.setState({ entry: e.target.value });
   }
-  outputHandler() {
+  outputPathHandler(e) {
+    e.preventDefault();
+    this.setState({ output: { ...this.state.output, path: e.target.value } });
+  }
+  outputFilenameHandler(e) {
+    e.preventDefault();
     this.setState({
-      output: {
-        ...this.state.output
-      }
+      output: { ...this.state.output, filename: e.target.value }
     });
-    console.log(this.state);
   }
-
-  outputPathHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        path: "path.resolve(__dirname, 'dist')"
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputFilenameHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        filename: 'bundle.js'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputPublicPathHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        publicPath: '/assets/'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputLibrary() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        library: 'MyLibrary'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputLibraryTarget() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        libraryTarget: 'umd'
-      }
-    });
-    console.log(this.state);
-  }
-
-  moduleHandler() {
-    this.setState({ module: {} });
-  }
-
-  modulesRulesHandler() {
-    let rules = [];
-    let rule1 = {
-      test: 'REGEX',
-      include: [],
-      exclude: [],
-      issuer: {},
-      enforce: '',
-      loader: '',
-      options: {},
-    }
-    rules.push(rule1)
+  moduleRulesTestHandler(e) {
+    e.preventDefault();
     this.setState({
       module: {
         ...this.state.module,
-        rules
+        rules: [{ ...this.state.module.rules[0], test: e.target.value }]
       }
     });
-    console.log(this.state);
+  }
+  moduleRulesLoaderHandler(e) {
+    e.preventDefault();
+    this.setState({
+      module: {
+        ...this.state.module,
+        rules: [{ ...this.state.module.rules[0], loader: e.target.value }]
+      }
+    });
   }
 
-  resolveHandler() {
+  resolveHandler(e) {
+    e.preventDefault();
     this.setState({ resolve: {} });
     console.log(this.state);
   }
-  performanceHandler() {
+  performanceHandler(e) {
+    e.preventDefault();
     this.setState({ performance: {} });
   }
-  devtoolHandler() {
-    this.setState({ devtool: "string" });
-    console.log(this.state);
+  devtoolHandler(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ devtool: e.target.value });
   }
-  contextHandler() {
-    this.setState({ content: "path" });
+
+  statsHandler(e) {
+    e.preventDefault();
+    this.setState({ stats: e.target.value });
   }
-  targetHandler() {
-    this.setState({ target: "string" });
-    console.log(this.state);
+  devServerPortHandler(e) {
+    e.preventDefault();
+    this.setState({
+      devServer: { ...this.state.devServer, port: e.target.value }
+    });
   }
-  externalsHandler() {
-    this.setState({ external: [] });
+  devServerProxyHandler(e) {
+    e.preventDefault();
+    this.setState({
+      devServer: { ...this.state.devServer, proxy: e.target.value }
+    });
   }
-  statsHandler() {
-    this.setState({ stats: 'string' });
-    console.log(this.state);
+  devServerOpenHandler(e) {
+    e.preventDefault();
+    this.setState({
+      devServer: { ...this.state.devServer, open: e.target.value }
+    });
   }
-  devserverHandler() {
-    this.setState({ devServer: {} });
-    console.log(this.state);
-  }
-  pluginsHandler() {
-    this.setState({ plugins: [] });
+  pluginsHandler(e) {
+    e.preventDefault();
+    if (!this.state.plugins.includes(e.target.value)) {
+      this.setState({
+        plugins: [...this.state.plugins, e.target.value]
+      });
+    }
   }
 
   render() {
     return (
       <div style={style}>
+        <Header />
         <Console
           modeHandler={this.modeHandler}
           entryHandler={this.entryHandler}
-          outputHandler={this.outputHandler}
+          entry={this.state.entry}
           outputPathHandler={this.outputPathHandler}
           outputFilenameHandler={this.outputFilenameHandler}
-          outputPublicPathHandler={this.outputPublicPathHandler}
-          outputLibrary={this.outputLibrary}
-          outputLibraryTarget={this.outputLibraryTarget}
-          moduleHandler={this.moduleHandler}
-          modulesRulesHandler={this.modulesRulesHandler}
-          resolveHandler={this.resolveHandler}
-          performanceHandler={this.performanceHandler}
+          path={this.state.output.path}
+          filename={this.state.output.filename}
+          moduleRulesTestHandler={this.moduleRulesTestHandler}
+          moduleRulesLoaderHandler={this.moduleRulesLoaderHandler}
+          rulesTest={this.state.module.rules[0].test}
+          rulesLoader={this.state.module.rules[0].loader}
           devtoolHandler={this.devtoolHandler}
-          contextHandler={this.contextHandler}
-          targetHandler={this.targetHandler}
-          externalsHandler={this.externalsHandler}
+          devtool={this.state.devtool}
           statsHandler={this.statsHandler}
-          devserverHandler={this.devserverHandler}
+          stats={this.state.stats}
+          devServerPortHandler={this.devServerPortHandler}
+          devServerProxyHandler={this.devServerProxyHandler}
+          devServerOpenHandler={this.devServerOpenHandler}
+          devServerPort={this.state.devServer.port}
+          devServerProxy={this.state.devServer.proxy}
+          devServerOpen={this.state.devServer.open}
           pluginsHandler={this.pluginsHandler}
         />
         <Display {...this.state} />
