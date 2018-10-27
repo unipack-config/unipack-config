@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tippy.js/react": "^1.0.1",
     "beautinator": "0.0.7",
     "express": "^4.16.4",
     "nodemon": "^1.18.4",
