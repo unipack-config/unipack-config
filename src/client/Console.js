@@ -103,26 +103,45 @@ export const Console = props => {
         {/* STATS */}
         <label>Stats</label>
         <select onChange={props.statsHandler}>
-          <option>none</option>
-          <option>errors-only</option>
-          <option>minimal</option>
-          <option>normal</option>
-          <option>verbose</option>
+          <option value="none">none</option>
+          <option value="errors-only">errors-only</option>
+          <option value="minimal">minimal</option>
+          <option value="normal">normal</option>
+          <option value="verbose">verbose</option>
         </select>
       </div>
 
       <div style={fieldWrap}>
         {/* DEVSERVER */}
-        <label>DevServer</label>
-        <select onChange={props.devserverHandler}>
-          <option>proxy</option>
+        <label>DevServer Port</label>
+        <input
+          value={props.devServerPort}
+          onChange={e => props.devServerPortHandler(e)}
+          type="text"
+        />
+      </div>
+
+      <div style={fieldWrap}>
+        <label>DevServer Proxy</label>
+        <input
+          value={props.devServerProxy}
+          onChange={e => props.devServerProxyHandler(e)}
+          type="text"
+        />
+      </div>
+
+      <div style={fieldWrap}>
+        <label>DevServer Open</label>
+        <select onChange={props.devServerOpenHandler}>
+          <option value="true">true</option>
+          <option value="false">false</option>
         </select>
       </div>
 
       <div style={fieldWrap}>
         {/* PLUGINS */}
         <label>Plugins</label>
-        <input onClick={props.pluginsHandler} type="button" />
+        <input onChange={props.pluginsHandler} />
         <input type="text" placeholder="Please enter your module" />
       </div>
     </div>

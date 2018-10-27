@@ -28,11 +28,12 @@ class App extends React.Component {
         ]
       },
       devtool: "cheap-source-map",
-      context: "__dirname",
-      target: "",
-      externals: [],
       stats: "",
-      devserver: {},
+      devServer: {
+        port: 3000,
+        open: true,
+        proxy: '{ "/api": "http://localhost:8080" }'
+      },
       plugins: []
     };
 
@@ -42,14 +43,11 @@ class App extends React.Component {
     this.outputFilenameHandler = this.outputFilenameHandler.bind(this);
     this.moduleRulesTestHandler = this.moduleRulesTestHandler.bind(this);
     this.moduleRulesLoaderHandler = this.moduleRulesLoaderHandler.bind(this);
-    this.resolveHandler = this.resolveHandler.bind(this);
-    this.performanceHandler = this.performanceHandler.bind(this);
     this.devtoolHandler = this.devtoolHandler.bind(this);
-    this.contextHandler = this.contextHandler.bind(this);
-    this.targetHandler = this.targetHandler.bind(this);
-    this.externalsHandler = this.externalsHandler.bind(this);
     this.statsHandler = this.statsHandler.bind(this);
-    this.devserverHandler = this.devserverHandler.bind(this);
+    this.devServerPortHandler = this.devServerPortHandler.bind(this);
+    this.devServerProxyHandler = this.devServerProxyHandler.bind(this);
+    this.devServerOpenHandler = this.devServerOpenHandler.bind(this);
     this.pluginsHandler = this.pluginsHandler.bind(this);
   }
 
@@ -110,12 +108,24 @@ class App extends React.Component {
   statsHandler(e) {
     e.preventDefault();
     this.setState({ stats: e.target.value });
-    console.log(this.state);
   }
-  devserverHandler(e) {
+  devServerPortHandler(e) {
     e.preventDefault();
-    this.setState({ devServer: {} });
-    console.log(this.state);
+    this.setState({
+      devServer: { ...this.state.devServer, port: e.target.value }
+    });
+  }
+  devServerProxyHandler(e) {
+    e.preventDefault();
+    this.setState({
+      devServer: { ...this.state.devServer, proxy: e.target.value }
+    });
+  }
+  devServerOpenHandler(e) {
+    e.preventDefault();
+    this.setState({
+      devServer: { ...this.state.devServer, open: e.target.value }
+    });
   }
   pluginsHandler(e) {
     e.preventDefault();
@@ -137,17 +147,16 @@ class App extends React.Component {
           moduleRulesLoaderHandler={this.moduleRulesLoaderHandler}
           rulesTest={this.state.module.rules[0].test}
           rulesLoader={this.state.module.rules[0].loader}
-          resolveHandler={this.resolveHandler}
-          performanceHandler={this.performanceHandler}
           devtoolHandler={this.devtoolHandler}
           devtool={this.state.devtool}
-          contextHandler={this.contextHandler}
-          targetHandler={this.targetHandler}
-          target={this.state.target}
-          externalsHandler={this.externalsHandler}
           statsHandler={this.statsHandler}
           stats={this.state.stats}
-          devserverHandler={this.devserverHandler}
+          devServerPortHandler={this.devServerPortHandler}
+          devServerProxyHandler={this.devServerProxyHandler}
+          devServerOpenHandler={this.devServerOpenHandler}
+          devServerPort={this.state.devServer.port}
+          devServerProxy={this.state.devServer.proxy}
+          devServerOpen={this.state.devServer.open}
           pluginsHandler={this.pluginsHandler}
         />
         <Display {...this.state} />
