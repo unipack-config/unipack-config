@@ -2,6 +2,7 @@ const React = require("react");
 const ReactDOM = require("react-dom");
 import { Console } from "./Console";
 import { Display } from "./Display";
+
 require("./index.css");
 
 const style = {
@@ -9,19 +10,38 @@ const style = {
 };
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      mode: "",
+      entry: "./index.js",
+      output: {
+        path: 'path.resolve(__dirname, "dist")',
+        filename: "bundle.js"
+      },
+      module: {
+        rules: [
+          {
+            test: /\.jsx?$/,
+            loader: "babel-loader"
+          }
+        ]
+      },
+      devtool: "cheap-source-map",
+      context: "__dirname",
+      target: "",
+      externals: [],
+      stats: "",
+      devserver: {},
+      plugins: []
+    };
+
     this.modeHandler = this.modeHandler.bind(this);
     this.entryHandler = this.entryHandler.bind(this);
-    this.outputHandler = this.outputHandler.bind(this);
     this.outputPathHandler = this.outputPathHandler.bind(this);
     this.outputFilenameHandler = this.outputFilenameHandler.bind(this);
-    this.outputPublicPathHandler = this.outputPublicPathHandler.bind(this);
-    this.outputLibrary = this.outputLibrary.bind(this);
-    this.outputLibraryTarget = this.outputLibraryTarget.bind(this);
-    this.moduleHandler = this.moduleHandler.bind(this);
-    this.modulesRulesHandler = this.modulesRulesHandler.bind(this);
+    this.moduleRulesTestHandler = this.moduleRulesTestHandler.bind(this);
+    this.moduleRulesLoaderHandler = this.moduleRulesLoaderHandler.bind(this);
     this.resolveHandler = this.resolveHandler.bind(this);
     this.performanceHandler = this.performanceHandler.bind(this);
     this.devtoolHandler = this.devtoolHandler.bind(this);
@@ -31,131 +51,74 @@ class App extends React.Component {
     this.statsHandler = this.statsHandler.bind(this);
     this.devserverHandler = this.devserverHandler.bind(this);
     this.pluginsHandler = this.pluginsHandler.bind(this);
-
-
   }
 
-  modeHandler() {
-    this.setState({ mode: "none" });
-    console.log(this.state);
+  modeHandler(e) {
+    e.preventDefault();
+    console.log("e", e.target.value);
+    this.setState({ mode: e.target.value });
   }
-  entryHandler() {
-    this.setState({ entry: "./index.js" });
+  entryHandler(e) {
+    e.preventDefault();
+    console.log("e", e.target.value);
+    this.setState({ entry: e.target.value });
   }
-  outputHandler() {
+  outputPathHandler(e) {
+    e.preventDefault();
+    this.setState({ output: { ...this.state.output, path: e.target.value } });
+  }
+  outputFilenameHandler(e) {
+    e.preventDefault();
     this.setState({
-      output: {
-        ...this.state.output
-      }
+      output: { ...this.state.output, filename: e.target.value }
     });
-    console.log(this.state);
   }
-
-  outputPathHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        path: "path.resolve(__dirname, 'dist')"
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputFilenameHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        filename: 'bundle.js'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputPublicPathHandler() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        publicPath: '/assets/'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputLibrary() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        library: 'MyLibrary'
-      }
-    });
-    console.log(this.state);
-  }
-
-  outputLibraryTarget() {
-    this.setState({
-      output: {
-        ...this.state.output,
-        libraryTarget: 'umd'
-      }
-    });
-    console.log(this.state);
-  }
-
-  moduleHandler() {
-    this.setState({ module: {} });
-  }
-
-  modulesRulesHandler() {
-    let rules = [];
-    let rule1 = {
-      test: 'REGEX',
-      include: [],
-      exclude: [],
-      issuer: {},
-      enforce: '',
-      loader: '',
-      options: {},
-    }
-    rules.push(rule1)
+  moduleRulesTestHandler(e) {
+    e.preventDefault();
     this.setState({
       module: {
         ...this.state.module,
-        rules
+        rules: [{ ...this.state.module.rules[0], test: e.target.value }]
       }
     });
-    console.log(this.state);
+  }
+  moduleRulesLoaderHandler(e) {
+    e.preventDefault();
+    this.setState({
+      module: {
+        ...this.state.module,
+        rules: [{ ...this.state.module.rules[0], loader: e.target.value }]
+      }
+    });
   }
 
-  resolveHandler() {
+  resolveHandler(e) {
+    e.preventDefault();
     this.setState({ resolve: {} });
     console.log(this.state);
   }
-  performanceHandler() {
+  performanceHandler(e) {
+    e.preventDefault();
     this.setState({ performance: {} });
   }
-  devtoolHandler() {
-    this.setState({ devtool: "string" });
+  devtoolHandler(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ devtool: e.target.value });
+  }
+
+  statsHandler(e) {
+    e.preventDefault();
+    this.setState({ stats: e.target.value });
     console.log(this.state);
   }
-  contextHandler() {
-    this.setState({ content: "path" });
-  }
-  targetHandler() {
-    this.setState({ target: "string" });
-    console.log(this.state);
-  }
-  externalsHandler() {
-    this.setState({ external: [] });
-  }
-  statsHandler() {
-    this.setState({ stats: 'string' });
-    console.log(this.state);
-  }
-  devserverHandler() {
+  devserverHandler(e) {
+    e.preventDefault();
     this.setState({ devServer: {} });
     console.log(this.state);
   }
-  pluginsHandler() {
+  pluginsHandler(e) {
+    e.preventDefault();
     this.setState({ plugins: [] });
   }
 
@@ -165,21 +128,25 @@ class App extends React.Component {
         <Console
           modeHandler={this.modeHandler}
           entryHandler={this.entryHandler}
-          outputHandler={this.outputHandler}
+          entry={this.state.entry}
           outputPathHandler={this.outputPathHandler}
           outputFilenameHandler={this.outputFilenameHandler}
-          outputPublicPathHandler={this.outputPublicPathHandler}
-          outputLibrary={this.outputLibrary}
-          outputLibraryTarget={this.outputLibraryTarget}
-          moduleHandler={this.moduleHandler}
-          modulesRulesHandler={this.modulesRulesHandler}
+          path={this.state.output.path}
+          filename={this.state.output.filename}
+          moduleRulesTestHandler={this.moduleRulesTestHandler}
+          moduleRulesLoaderHandler={this.moduleRulesLoaderHandler}
+          rulesTest={this.state.module.rules[0].test}
+          rulesLoader={this.state.module.rules[0].loader}
           resolveHandler={this.resolveHandler}
           performanceHandler={this.performanceHandler}
           devtoolHandler={this.devtoolHandler}
+          devtool={this.state.devtool}
           contextHandler={this.contextHandler}
           targetHandler={this.targetHandler}
+          target={this.state.target}
           externalsHandler={this.externalsHandler}
           statsHandler={this.statsHandler}
+          stats={this.state.stats}
           devserverHandler={this.devserverHandler}
           pluginsHandler={this.pluginsHandler}
         />

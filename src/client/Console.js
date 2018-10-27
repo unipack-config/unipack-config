@@ -1,141 +1,117 @@
 import React from "react";
 
-const style = {
-  width: "50%",
-  border: "1px solid black"
+const wrap = {
+  width: "20%",
+  borderRight: "2px solid #FF5D52"
+};
+
+const fieldWrap = {
+  margin: "10px 0 10px 10px"
 };
 
 export const Console = props => {
   return (
-    <div style={style}>
-      <div>
+    <div style={wrap}>
+      <div style={fieldWrap}>
         {/* MODE */}
         <label>Mode</label>
-        <select onChange={props.modeHandler}>
-          <option>None</option>
-          <option>Development</option>
-          <option>Production</option>
+        <select
+          onChange={e => {
+            props.modeHandler(e);
+          }}
+        >
+          <option value="none">None</option>
+          <option value="development">Development</option>
+          <option value="production">Production</option>
         </select>
-
       </div>
-      {/* ENTRY */}
-      <label>Entry point</label>
-      <input onChange={props.entryHandler} placeholder="Please enter entry point" />
+
+      <div style={fieldWrap}>
+        {/* ENTRY */}
+        <label>Entry point</label>
+        <input
+          value={props.entry}
+          onChange={e => {
+            props.entryHandler(e);
+          }}
+          placeholder="Please enter entry point"
+        />
+      </div>
 
       {/* OUTPUT */}
-      {/* <div>
-          <label>Output</label>
-          <input onClick={props.outputHandler} type="button" />
-        </div> */}
-
-      <div>
+      <div style={fieldWrap}>
         <label>Output Path</label>
-        <input onClick={props.outputPathHandler} type="button" />
-        <input type="text" placeholder="Please enter your output path" />
+        <input
+          value={props.path}
+          onChange={e => props.outputPathHandler(e)}
+          type="text"
+        />
       </div>
 
-      <div>
+      <div style={fieldWrap}>
         <label>Output Filename</label>
-        <input onClick={props.outputFilenameHandler} type="button" />
-        <input type="text" placeholder="Please enter your output filename" />
-      </div>
-
-      <div>
-        <label>Output Public Path</label>
-        <input onClick={props.outputPublicPathHandler} type="button" />
-        <input type="text" placeholder="Please enter your output public path" />
-      </div>
-
-      <div>
-        <label>Output Library</label>
-        <input onClick={props.outputLibrary} type="button" />
-        <input type="text" placeholder="Please enter your output library" />
-      </div>
-
-      <div>
-        <label>Output Library Target</label>
-        <input onClick={props.outputLibraryTarget} type="button" />
-        <input type="text" placeholder="Please enter your output library target" />
+        <input
+          value={props.filename}
+          onChange={e => props.outputFilenameHandler(e)}
+          type="text"
+        />
       </div>
 
       {/* MODULE */}
-      {/* <div>
-          <label>Module</label>
-          <input onClick={props.moduleHandler} type="button" />
-          <input type="text" placeholder="Please enter your module" />
-        </div> */}
-
-      <div>
-        <label>Add Modules Rule</label>
-        <input onClick={props.modulesRulesHandler} type="button" value='+' />
-        <input type="text" placeholder="Please enter your module rules" />
+      <div style={fieldWrap}>
+        <label>Module Rules Test</label>
+        <input
+          value={props.rulesTest}
+          onChange={e => props.moduleRulesTestHandler(e)}
+          type="text"
+        />
+      </div>
+      <div style={fieldWrap}>
+        <label>Module Rules Loader</label>
+        <input
+          value={props.rulesLoader}
+          onChange={e => props.moduleRulesLoaderHandler(e)}
+          type="text"
+        />
       </div>
 
-      {/* RESOLVE */}
-      <div>
-        <label>Resolve</label>
-        <input onClick={props.resolveHandler} type="button" />
-        <input type="text" placeholder="Please enter your module" />
-      </div>
-      {/* PERFORMANCE */}
-      <div>
-        <label>Performance</label>
-        <input onClick={props.performanceHandler} type="button" />
-        <input type="text" placeholder="Please enter your module" />
-      </div>
-      <div>
+      <div style={fieldWrap}>
         {/* DEVTOOL */}
         <label>Devtool</label>
-        <select onClick={props.devtoolHandler}>
-          <option>source-map</option>
-          <option>eval</option>
-          <option>cheap-eval-source-map</option>
-          <option>eval-source-map</option>
-          <option>cheap-source-map</option>
-          <option>cheap-module-source-map</option>
-          <option>inline-cheap-source-map</option>
-          <option>inline-cheap-module-source-map</option>
-          <option>hidden-source-map</option>
-          <option>inline-source-map</option>
-          <option>nosources-source-map</option>
+        <select onChange={props.devtoolHandler}>
+          <option value="source-map">source-map</option>
+          <option value="eval">eval</option>
+          <option value="cheap-eval-source-map">cheap-eval-source-map</option>
+          <option value="eval-source-map">eval-source-map</option>
+          <option value="cheap-source-map">cheap-source-map</option>
+          <option value="cheap-module-source-map">
+            cheap-module-source-map
+          </option>
+          <option value="inline-cheap-source-map">
+            inline-cheap-source-map
+          </option>
+          <option value="inline-cheap-module-source-map">
+            inline-cheap-module-source-map
+          </option>
+          <option value="hidden-source-map">hidden-source-map</option>
+          <option value="inline-source-map">inline-source-map</option>
+          <option value="nosources-source-map">nosources-source-map</option>
         </select>
       </div>
 
-      <div>
-        {/* Context */}
-        <label>Context</label>
-        <input onClick={props.contextHandler} type="button" />
-        <input type="text" placeholder="Please enter your module" />
-      </div>
-
-      <div>
-        {/* Target */}
-        <label>Target</label>
-        <input onClick={props.targetHandler} type="button" />
-        <input type="text" placeholder="Please enter your module" />
-      </div>
-
-      <div>
-        {/* Externals */}
-        <label>Externals</label>
-        <input onClick={props.externalsHandler} type="button" />
-        <input type="text" placeholder="Please enter your module" />
-      </div>
-
-      <div>
+      <div style={fieldWrap}>
         {/* STATS */}
         <label>Stats</label>
-        <select onChange={props.statsHandler} >
+        <select onChange={props.statsHandler}>
           <option>none</option>
           <option>errors-only</option>
           <option>minimal</option>
           <option>normal</option>
           <option>verbose</option>
         </select>
-
       </div>
 
-      <div>
+      <div style={fieldWrap}>
         {/* DEVSERVER */}
         <label>DevServer</label>
         <select onChange={props.devserverHandler}>
@@ -143,13 +119,12 @@ export const Console = props => {
         </select>
       </div>
 
-      <div>
+      <div style={fieldWrap}>
         {/* PLUGINS */}
         <label>Plugins</label>
         <input onClick={props.pluginsHandler} type="button" />
         <input type="text" placeholder="Please enter your module" />
       </div>
-
     </div>
   );
 };
