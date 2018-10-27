@@ -38,7 +38,10 @@ export class AccordionExampleMenu extends React.Component {
             index={0}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 0} content={ModeForm} />
+          <Accordion.Content
+            active={activeIndex === 0}
+            content={<ModeForm />}
+          />
         </Menu.Item>
 
         <Menu.Item>
@@ -57,7 +60,10 @@ export class AccordionExampleMenu extends React.Component {
             index={2}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 2} content={OutputForm} />
+          <Accordion.Content
+            active={activeIndex === 2}
+            content={<OutputForm />}
+          />
         </Menu.Item>
         <Menu.Item>
           <Accordion.Title
