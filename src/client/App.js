@@ -4,7 +4,11 @@ import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
 
+import Tippy from '@tippy.js/react'
+import 'tippy.js/dist/tippy.css'
+
 require("./index.css");
+
 
 const style = {
   display: "flex"
