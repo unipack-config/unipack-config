@@ -15,7 +15,7 @@ const header = {
 export const Header = props => {
   return (
     <div style={header} >
-    <span class="title">🌈UNI-PAC 🦄</span>
+    <span className="title">🌈UNI-PAC 🦄</span>
     </div>
   )
 };
