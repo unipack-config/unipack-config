@@ -45,7 +45,7 @@ export const Display = props => {
         value={`const path = require("path"); 
 ${pluginsArr}
 
-module.exports = ${result2}`}
+module.exports = ${result}`}
       />
       </div>
     </div>
