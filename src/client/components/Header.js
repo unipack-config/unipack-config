@@ -15,7 +15,7 @@ const header = {
 export const Header = props => {
   return (
     <div style={header} >
-    <span className="title">🌈UNI-PAC 🦄</span>
+      <span className="title">🦄 unipack-config 🌈 </span>
     </div>
   )
 };
