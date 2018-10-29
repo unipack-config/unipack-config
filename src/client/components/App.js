@@ -1,12 +1,11 @@
 const React = require("react");
-const ReactDOM = require("react-dom");
 import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
 import Tippy from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
 
-require("./index.css");
+require("../styles/style.css");
 
 const style = {
   display: "flex"
@@ -146,4 +145,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
