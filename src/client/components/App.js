@@ -7,8 +7,7 @@ import { Display } from "./Display";
 import Tippy from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
 
-
-require("./styles/style.css");
+require("../styles/style.css");
 
 const style = {
   display: "flex"
