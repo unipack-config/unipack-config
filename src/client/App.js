@@ -1,13 +1,10 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
-
 import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
-
 import Tippy from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
-
 
 require("./index.css");
 
@@ -42,42 +39,27 @@ class App extends React.Component {
       },
       plugins: []
     };
-
-    this.modeHandler = this.modeHandler.bind(this);
-    this.entryHandler = this.entryHandler.bind(this);
-    this.outputPathHandler = this.outputPathHandler.bind(this);
-    this.outputFilenameHandler = this.outputFilenameHandler.bind(this);
-    this.moduleRulesTestHandler = this.moduleRulesTestHandler.bind(this);
-    this.moduleRulesLoaderHandler = this.moduleRulesLoaderHandler.bind(this);
-    this.devtoolHandler = this.devtoolHandler.bind(this);
-    this.statsHandler = this.statsHandler.bind(this);
-    this.devServerPortHandler = this.devServerPortHandler.bind(this);
-    this.devServerProxyHandler = this.devServerProxyHandler.bind(this);
-    this.devServerOpenHandler = this.devServerOpenHandler.bind(this);
-    this.pluginsHandler = this.pluginsHandler.bind(this);
   }
 
-  modeHandler(e) {
+  modeHandler = (e) => {
     e.preventDefault();
-    console.log("e", e.target.value);
     this.setState({ mode: e.target.value });
   }
-  entryHandler(e) {
+  entryHandler = (e) => {
     e.preventDefault();
-    console.log("e", e.target.value);
     this.setState({ entry: e.target.value });
   }
-  outputPathHandler(e) {
+  outputPathHandler = (e) => {
     e.preventDefault();
     this.setState({ output: { ...this.state.output, path: e.target.value } });
   }
-  outputFilenameHandler(e) {
+  outputFilenameHandler = (e) => {
     e.preventDefault();
     this.setState({
       output: { ...this.state.output, filename: e.target.value }
     });
   }
-  moduleRulesTestHandler(e) {
+  moduleRulesTestHandler = (e) => {
     e.preventDefault();
     this.setState({
       module: {
@@ -86,7 +68,7 @@ class App extends React.Component {
       }
     });
   }
-  moduleRulesLoaderHandler(e) {
+  moduleRulesLoaderHandler = (e) => {
     e.preventDefault();
     this.setState({
       module: {
@@ -95,45 +77,33 @@ class App extends React.Component {
       }
     });
   }
-
-  resolveHandler(e) {
+  devtoolHandler = (e) => {
     e.preventDefault();
-    this.setState({ resolve: {} });
-    console.log(this.state);
-  }
-  performanceHandler(e) {
-    e.preventDefault();
-    this.setState({ performance: {} });
-  }
-  devtoolHandler(e) {
-    e.preventDefault();
-    console.log(e.target.value);
     this.setState({ devtool: e.target.value });
   }
-
-  statsHandler(e) {
+  statsHandler = (e) => {
     e.preventDefault();
     this.setState({ stats: e.target.value });
   }
-  devServerPortHandler(e) {
+  devServerPortHandler = (e) => {
     e.preventDefault();
     this.setState({
       devServer: { ...this.state.devServer, port: e.target.value }
     });
   }
-  devServerProxyHandler(e) {
+  devServerProxyHandler = (e) => {
     e.preventDefault();
     this.setState({
       devServer: { ...this.state.devServer, proxy: e.target.value }
     });
   }
-  devServerOpenHandler(e) {
+  devServerOpenHandler = (e) => {
     e.preventDefault();
     this.setState({
       devServer: { ...this.state.devServer, open: e.target.value }
     });
   }
-  pluginsHandler(e) {
+  pluginsHandler = (e) => {
     e.preventDefault();
     if (!this.state.plugins.includes(e.target.value)) {
       this.setState({
