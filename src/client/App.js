@@ -1,5 +1,4 @@
 const React = require("react");
-const ReactDOM = require("react-dom");
 
 import { Header } from "./Header";
 import { Console } from "./Console";
@@ -176,4 +175,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
