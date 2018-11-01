@@ -1,5 +1,6 @@
 import React from "react";
 const beautinator = require("beautinator");
+import { Icon } from "semantic-ui-react";
 
 const style = {
   width: "calc(100vw - 300px)",
