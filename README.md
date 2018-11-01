@@ -2,7 +2,7 @@
 
 
 # unipack-config
-Configure, customize, and download webpack config files using a beautiful, intuitive GUI interface
+Configure, customize, and download webpack config files using a beautiful, intuitive GUI interface. Unipack is an open source Web Pack configurator.
 
 # Technologies: 
 * Javascript / ES6

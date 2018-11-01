@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
-
 body {
   background: #ffffff;
   color: #333;
@@ -22,6 +21,14 @@ body {
   font-size: 20px;
   color: white;
   line-height: 30px;
+}
+
+.importArea {
+  position: relative;
+  top: 100px;
+  color: rgb(216, 222, 233);
+  left: 50px;
+  font-size: 23px;
 }
 
 .code_line {
@@ -52,8 +59,12 @@ body {
 
 .window-btns {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 20px;
+  z-index: 10;
+  width: 90%;
+  background: rgb(46, 52, 64);
+  height: 20px;
+  padding: 20px;
 }
 
 .input-form {
