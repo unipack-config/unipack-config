@@ -1,4 +1,5 @@
 const React = require("react");
+
 import { Header } from "./Header";
 import { Console } from "./Console";
 import { Display } from "./Display";
@@ -6,9 +7,9 @@ import { Display } from "./Display";
 import Tippy from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
 
+
 require("./index.css");
 import { AccordionExampleMenu } from "./Console2";
-
 
 const style = {
   display: "flex"
