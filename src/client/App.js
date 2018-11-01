@@ -9,24 +9,9 @@ import 'tippy.js/dist/tippy.css'
 
 
 require("./index.css");
-import { AccordionExampleMenu } from "./Console2";
 
 const style = {
   display: "flex"
-};
-
-var print = function(o) {
-  var str = "";
-
-  for (var p in o) {
-    if (typeof o[p] == "string") {
-      str += p + ": " + o[p] + "; </br>";
-    } else {
-      str += p + ": { </br>" + print(o[p]) + "}";
-    }
-  }
-
-  return str;
 };
 
 class App extends React.Component {
@@ -184,10 +169,6 @@ class App extends React.Component {
           devServerOpen={this.state.devServer.open}
           pluginsHandler={this.pluginsHandler}
         />
-        <div style={{ width: "50%" }}>
-          <AccordionExampleMenu />
-        </div>
-
         <Display {...this.state} />
       </div>
     );
