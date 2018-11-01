@@ -33,6 +33,7 @@ export const Display = props => {
     JSON.parse(JSON.stringify(`const ${el} = require(${el});`))
   ));
   const result2 = JSON.stringify(props, undefined, 4);
+
   return (
     <div style={style}>
       <div className="textarea-wrap">
